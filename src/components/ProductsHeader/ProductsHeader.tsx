@@ -1,5 +1,5 @@
 import { Divider, Stack, Tab, Tabs, Typography } from '@mui/material';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 interface ProductsHeaderProps {
@@ -18,12 +18,15 @@ export const ProductsHeader: React.FC<ProductsHeaderProps> = ({ count }) => {
         setSearchParams(searchParams);
     };
 
-    const value = searchParams.get('category');
+    const value = useMemo(() => {
+        let value = searchParams.get('category');
+        return value ? value === 'recent' ? 'recent' : '' : ''
+    }, [searchParams])
 
     return (
         <Stack direction='row' alignItems='center'>
             <Typography sx={{ flex: 1, color: (theme) => theme.palette.action.disabled }} variant='h6'>{`Total count: ${count}`}</Typography>
-            <Tabs value={value ?? ''} sx={{ display: 'flex' }}>
+            <Tabs value={value} sx={{ display: 'flex' }}>
                 <Tab
                     label={
                         <Typography variant='h6' sx={{ textTransform: 'none', }}>

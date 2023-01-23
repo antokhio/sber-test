@@ -11,10 +11,10 @@ export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(({ }, ref)
     const [searchParams, setSearchParams] = useSearchParams();
 
     let productsOptions = useTypedSelector(productsOptionsSelector);
-    let productsChecked = searchParams.getAll('product');
+    let productsChecked = searchParams.getAll('product').map(param => param.toLowerCase());
 
     let visibilitiesOptions = useTypedSelector(productsVisibilitiesSelector);
-    let visibilitiesChecked = searchParams.getAll('visibility');
+    let visibilitiesChecked = searchParams.getAll('visibility').map(param => param.toLowerCase())
 
     const handleProductsOption = (e: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
         if (checked) productsChecked = [...productsChecked, e.target.name];
