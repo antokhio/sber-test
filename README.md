@@ -1,4 +1,4 @@
-# Sber soft test task SPA.
+# Sber soft test task SPA
 
 ### Clone
 
