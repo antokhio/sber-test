@@ -4,7 +4,7 @@
 
 `git clone git@github.com:antokhio/sber-test.git`
 
-### Insatll dependencies
+### Install dependencies
 
 `yarn`
 
