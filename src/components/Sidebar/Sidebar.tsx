@@ -5,9 +5,9 @@ import { SidebarDrawer, SidebarOptions } from '..';
 import { useTypedSelector } from '../../store';
 import { productsOptionsSelector, productsVisibilitiesSelector } from '../../store/slices';
 
-interface SidebarProps {}
+interface SidebarProps { }
 
-export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(({}, ref) => {
+export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(({ }, ref) => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     let productsOptions = useTypedSelector(productsOptionsSelector);
@@ -18,18 +18,18 @@ export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(({}, ref) 
 
     const handleProductsOption = (e: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
         if (checked) productsChecked = [...productsChecked, e.target.name];
-        else productsChecked = productsChecked.filter((product) => product !== e.target.name);
+        else productsChecked = productsChecked.filter((product) => product.toLowerCase() !== e.target.name.toLowerCase());
         searchParams.delete('product');
-        productsChecked.forEach((product) => searchParams.append('product', product));
+        productsChecked.forEach((product) => searchParams.append('product', product.toLowerCase()));
 
         setSearchParams(searchParams);
     };
 
     const handleVisibilitiesOption = (e: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
         if (checked) visibilitiesChecked = [...visibilitiesChecked, e.target.name];
-        else visibilitiesChecked = visibilitiesChecked.filter((visibility) => visibility !== e.target.name);
+        else visibilitiesChecked = visibilitiesChecked.filter((visibility) => visibility !== e.target.name.toLowerCase());
         searchParams.delete('visibility');
-        visibilitiesChecked.forEach((product) => searchParams.append('visibility', product));
+        visibilitiesChecked.forEach((visibility) => searchParams.append('visibility', visibility.toLowerCase()));
 
         setSearchParams(searchParams);
     };

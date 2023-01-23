@@ -19,9 +19,9 @@ export const SidebarOptions: React.FC<SidebarOptionsProps> = ({ title, options, 
                 {options.map((option) => (
                     <FormControlLabel
                         key={`${title}-${option}`}
-                        name={option}
+                        name={option.toLowerCase()}
                         label={option}
-                        control={<Checkbox checked={checked.includes(option)} onChange={onChange} />}
+                        control={<Checkbox checked={checked.includes(option.toLowerCase())} onChange={onChange} />}
                     />
                 ))}
             </Stack>

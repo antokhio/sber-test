@@ -75,14 +75,14 @@ export const productsSelector = createSelector(
         if (visibilitiesOptions.length > 0) {
             products = products.filter((product) =>
                 visibilitiesOptions.some(
-                    (option) => product.visibility.toLocaleLowerCase() === option.toLowerCase()
+                    (option) => product.visibility.toLowerCase() === option.toLowerCase()
                 )
             );
         }
 
         if (!categoryOptions) {
             products.sort((a, b) => b.popularity - a.popularity);
-        } else if (categoryOptions.toLowerCase() === 'recent') {
+        } else if (categoryOptions === 'recent') {
             products.sort((a, b) => getTime(parseISO(b.date)) - getTime(parseISO(a.date)));
         }
 
