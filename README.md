@@ -1,10 +1,10 @@
-# Sber Soft Test Task App
+# Sber soft test task SPA.
 
 ### Clone
 
 `git clone git@github.com:antokhio/sber-test.git`
 
-### Insatll Dependencies
+### Insatll dependencies
 
 `yarn`
 
