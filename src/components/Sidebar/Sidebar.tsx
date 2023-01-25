@@ -11,25 +11,25 @@ export const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(({ }, ref)
     const [searchParams, setSearchParams] = useSearchParams();
 
     let productsOptions = useTypedSelector(productsOptionsSelector);
-    let productsChecked = searchParams.getAll('product').map(param => param.toLowerCase());
+    let productsChecked = searchParams.getAll('product').map(param => param);
 
     let visibilitiesOptions = useTypedSelector(productsVisibilitiesSelector);
-    let visibilitiesChecked = searchParams.getAll('visibility').map(param => param.toLowerCase())
+    let visibilitiesChecked = searchParams.getAll('visibility').map(param => param)
 
     const handleProductsOption = (e: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
         if (checked) productsChecked = [...productsChecked, e.target.name];
         else productsChecked = productsChecked.filter((product) => product.toLowerCase() !== e.target.name.toLowerCase());
         searchParams.delete('product');
-        productsChecked.forEach((product) => searchParams.append('product', product.toLowerCase()));
+        productsChecked.forEach((product) => searchParams.append('product', product));
 
         setSearchParams(searchParams);
     };
 
     const handleVisibilitiesOption = (e: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
         if (checked) visibilitiesChecked = [...visibilitiesChecked, e.target.name];
-        else visibilitiesChecked = visibilitiesChecked.filter((visibility) => visibility !== e.target.name.toLowerCase());
+        else visibilitiesChecked = visibilitiesChecked.filter((visibility) => visibility.toLowerCase() !== e.target.name.toLowerCase());
         searchParams.delete('visibility');
-        visibilitiesChecked.forEach((visibility) => searchParams.append('visibility', visibility.toLowerCase()));
+        visibilitiesChecked.forEach((visibility) => searchParams.append('visibility', visibility));
 
         setSearchParams(searchParams);
     };
